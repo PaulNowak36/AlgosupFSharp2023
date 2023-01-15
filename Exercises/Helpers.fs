@@ -21,6 +21,9 @@ let inline AssertEquality (x:'T) (y:'T) =
     | :? System.Type as t when t = typeof<FILL_IN_THE_EXCEPTION> -> failwith "Seek wisdom by correcting the type FILL_IN_THE_EXCEPTION"
     | _ -> Assert.AreEqual(x,y)
 
+let  AssertEquality2dp (x: float) (y: float) =
+    Assert.AreEqual(x, Math.Round(y, 2))
+
 let AssertInequality (x:'T) (y:'T) =
     Assert.AreNotEqual(x,y)
 
