@@ -1,11 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Helpers.fs" />
     <Compile Include="ExercisesDay1.fs" />
     <Compile Include="ExercisesDay1Additional.fs" />
+    <Compile Include="ExercisesDay2.fs" />
+    <Compile Include="ExercisesDay2_1QueenAttack.fs" />
+    <Compile Include="ExercisesDay2_2SpaceAge.fs" />
+    <Compile Include="ExercisesDay2_3Clock.fs" />
+    <Compile Include="ExercisesDay2_4RobotSimulator.fs" />
+    <Compile Include="ExercisesDay2_5Allergies.fs" />
+    <Compile Include="ExercisesDay2_6Hamming.fs" />
+    <Compile Include="ExercisesDay2_7Primes.fs" />
+    <Compile Include="ExercisesDay2_8Minesweeper.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
