@@ -5,7 +5,7 @@ open System
 
 module ExercisesDay1Additional =
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let AssertExpectation() =
 
         // You are given the following information, but you may prefer to do some research for yourself.
@@ -25,23 +25,29 @@ module ExercisesDay1Additional =
         let startDate = new DateTime(1901, 1, 1)
         let endDate = new DateTime(2000, 12, 31)
 
-      
-            
+        let firstSundays =
+            seq {
+                for i in 1..(endDate - startDate).Days do
+                    let d = startDate.AddDays(float i)
+                    if d.DayOfWeek = DayOfWeek.Sunday && d.Day = 1 then
+                        1
+                    else
+                        0
+            } |> Seq.sum
 
-        AssertEquality __ 171
 
-    [<Ignore("Not implemented");Test>]
+        AssertEquality firstSundays 171
+
+    [<Test>]
     let TestForPangram() =
         // A pangram or holoalphabetic sentence is a sentence using every letter of a given alphabet at least once.
         // From: https://en.wikipedia.org/wiki/Pangram
         //
 
         let isPanagram (input: string) =
-            __
-            //create an alphabet from a to z
-            //put everything in lowercase
-            //get the number of letters
-            //if a sentence has 26 distinct letters, its a panagram
+            let s = input.ToLower()
+            let alphabet = ['a'..'z']
+            alphabet |> List.forall (fun x -> s.Contains(x))
 
         AssertEquality true (isPanagram "The quick brown fox jumps over the lazy dog")
         AssertEquality false (isPanagram "Friends, Romans, Countrymen, lend me your ears")
