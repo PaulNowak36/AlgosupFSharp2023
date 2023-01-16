@@ -30,45 +30,50 @@ module ExercisesDay2_1QueenAttack =
     // In this case, that answer would be yes, they can, because both pieces share a diagonal.
 
     let canAttack (queen1: int * int) (queen2: int * int) =
-        __
+        queen1 =
+           queen2
+             || (fst queen1 = fst queen2)
+             || (snd queen1 = snd queen2)
+             || (abs (fst queen1 - fst queen2)) =
+             (abs(snd queen1 - snd queen2))
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Cannot attack`` () =
         let whiteQueen = (2, 4)
         let blackQueen = (6, 6)
         canAttack blackQueen whiteQueen |> AssertEquality false
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on same row`` () =
         let whiteQueen = (2, 4)
         let blackQueen = (2, 6)
         canAttack blackQueen whiteQueen |> AssertEquality true
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on same column`` () =
         let whiteQueen = (4, 5)
         let blackQueen = (2, 5)
         canAttack blackQueen whiteQueen |> AssertEquality true
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on first diagonal`` () =
         let whiteQueen = (2, 2)
         let blackQueen = (0, 4)
         canAttack blackQueen whiteQueen |> AssertEquality true
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on second diagonal`` () =
         let whiteQueen = (2, 2)
         let blackQueen = (3, 1)
         canAttack blackQueen whiteQueen |> AssertEquality true
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on third diagonal`` () =
         let whiteQueen = (2, 2)
         let blackQueen = (1, 1)
         canAttack blackQueen whiteQueen |> AssertEquality true
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``QueenAttack - Can attack on fourth diagonal`` () =
         let whiteQueen = (1, 7)
         let blackQueen = (0, 6)

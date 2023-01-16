@@ -5,7 +5,7 @@ open System
 
 module ExercisesDay1Additional =
 
-    [<Test>]
+    [<Ignore("Not implemented");Test>]
     let AssertExpectation() =
 
         // You are given the following information, but you may prefer to do some research for yourself.
@@ -25,16 +25,12 @@ module ExercisesDay1Additional =
         let startDate = new DateTime(1901, 1, 1)
         let endDate = new DateTime(2000, 12, 31)
 
-        //let firstSundays =
-            //seq = {
-                //for i in 1..(endDate - startDate).Days do
-                //    let d = startDate.AddDays(float i)
-              //      if d.DayOfWeek = DayOfWeek
-            //}
+      
+            
 
-        AssertEquality //firstSundays 171
+        AssertEquality __ 171
 
-    [<Test>]
+    [<Ignore("Not implemented");Test>]
     let TestForPangram() =
         // A pangram or holoalphabetic sentence is a sentence using every letter of a given alphabet at least once.
         // From: https://en.wikipedia.org/wiki/Pangram

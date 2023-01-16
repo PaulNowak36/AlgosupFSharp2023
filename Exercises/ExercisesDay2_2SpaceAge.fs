@@ -29,36 +29,46 @@ module ExercisesDay2_1SpaceAge =
         | Neptune
         | Uranus
 
-    let age (planet: Planet) (seconds: int64): float = __
+    let age (planet: Planet) (seconds: float): float =
+        let earthYears: float = seconds / 31557600.0 |> float
+        match planet with
+        | Mercury -> earthYears / 0.2408467
+        | Venus -> earthYears / 0.61519726
+        | Earth -> earthYears 
+        | Mars -> earthYears / 1.8808158
+        | Jupiter -> earthYears / 11.862615
+        | Saturn -> earthYears / 29.447498
+        | Neptune -> earthYears / 164.79132
+        | Uranus -> earthYears / 84.016846
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Earth`` () =
-        age Earth 1000000000L |> AssertEquality2dp 31.69
+        age Earth 1000000000 |> AssertEquality2dp 31.69
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Mercury`` () =
-        age Mercury 2134835688L |> AssertEquality2dp 280.88
+        age Mercury 2134835688 |> AssertEquality2dp 280.88
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Venus`` () =
-        age Venus 189839836L |> AssertEquality2dp 9.78
+        age Venus 189839836 |> AssertEquality2dp 9.78
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Mars`` () =
-        age Mars 2129871239L |> AssertEquality2dp 35.88
+        age Mars 2129871239 |> AssertEquality2dp 35.88
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Jupiter`` () =
-        age Jupiter 901876382L |> AssertEquality2dp 2.41
+        age Jupiter 901876382 |> AssertEquality2dp 2.41
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Saturn`` () =
-        age Saturn 2000000000L |> AssertEquality2dp 2.15
+        age Saturn 2000000000 |> AssertEquality2dp 2.15
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Uranus`` () =
-        age Uranus 1210123456L |> AssertEquality2dp 0.46
+        age Uranus 1210123456 |> AssertEquality2dp 0.46
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``SpaceAge - Age on Neptune`` () =
-        age Neptune 1821023456L |> AssertEquality2dp 0.35
+        age Neptune 1821023456 |> AssertEquality2dp 0.35

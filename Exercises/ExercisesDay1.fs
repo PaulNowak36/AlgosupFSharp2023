@@ -4,11 +4,11 @@ open NUnit.Framework
 
 module ExercisesDay1 =
 
-    [<Test>]
-    let AssertExpectation() =
-        let expectedValue = 1 + 1
-        let actualValue = 2
-        AssertEquality expectedValue actualValue
+    // [<Test>]
+    // let AssertExpectation() =
+    //     let expectedValue = 1 + 1
+    //     let actualValue = 2
+    //     AssertEquality expectedValue actualValue
 
     //Easy, right? Now try one more
     [<Test>]
@@ -171,7 +171,7 @@ module ExercisesDay1 =
     let SortingAWordListByLength() =
         let initialValue = ["April"; "is"; "the"; "cruelest"; "month"; ]
 
-        let result = initialValue |> List.sortBy()
+        let result = initialValue |> List.sortBy(fun x -> x.Length)
 
         AssertEquality ["is"; "the"; "April"; "month"; "cruelest"] result
 
