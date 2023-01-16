@@ -4,11 +4,12 @@ open NUnit.Framework
 
 module ExercisesDay1 =
 
-    // [<Test>]
-    // let AssertExpectation() =
-    //     let expectedValue = 1 + 1
-    //     let actualValue = 2
-    //     AssertEquality expectedValue actualValue
+    [<Test>]
+    let AssertExpectation() =
+        let expectedValue = 1 + 1
+        let actualValue = 2
+
+        AssertEquality expectedValue actualValue
 
     //Easy, right? Now try one more
     [<Test>]
@@ -19,13 +20,13 @@ module ExercisesDay1 =
     let HexadecimalsLiterals() =
         let actualValue = 0x56 + 0x0F
 
-        AssertEquality 101 actualValue
+        AssertEquality 0x65 actualValue
 
     [<Test>]
     let BinaryLiterals() =
         let actualValue = 0b00100101 + 0b00001010
 
-        AssertEquality 47 actualValue
+        AssertEquality 0b101111 actualValue
 
     [<Test>]
     let NestedScopes() =
@@ -143,13 +144,15 @@ module ExercisesDay1 =
         AssertEquality list.Head "pear"
         AssertEquality list.Tail ["apple"; "grape"; "peach"]
         AssertEquality list.Length 4
+        AssertEquality list.Tail.Length 3
+
 
     [<Test>]
     let CreatingListsWithARange() =
         let list = [0..3]
 
         AssertEquality list.Head 0
-        AssertEquality list.Tail [1; 2; 3]
+        AssertEquality list.Tail [1;2;3]
 
     [<Test>]
     let ReversingAList() =
@@ -171,77 +174,80 @@ module ExercisesDay1 =
     let SortingAWordListByLength() =
         let initialValue = ["April"; "is"; "the"; "cruelest"; "month"; ]
 
-        let result = initialValue |> List.sortBy(fun x -> x.Length)
+        let result = initialValue |> List.sortBy (fun x -> x.Length)
 
         AssertEquality ["is"; "the"; "April"; "month"; "cruelest"] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SquareNumberList() =
         let initialValue = [1 .. 6]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.map(fun x -> x * x)
 
         AssertEquality [1; 4; 9; 16; 25; 36] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ConvertNumbersToString() =
         let initialValue = [2 .. 6]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.map string
 
         AssertEquality ["2"; "3"; "4"; "5"; "6"] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let MultiplyAllElementsBy10() =
         let initialValue = [0 .. 4]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.map(fun x -> x * 10)
 
         AssertEquality [0; 10; 20; 30; 40;] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let CountNumberOfUniqueWords() =
         let initialValue =
             ["water"; "water"; "every"; "where";
              "nor"; "any"; "drop"; "to"; "drink" ]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.distinct
 
-        AssertEquality 8 result
+        AssertEquality 8 result.Length
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FindLargestNumberInAList() =
         let initialValue = [22; 6; 72; 33; 45; 10; 21; 67]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.max
 
         AssertEquality 72 result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SumAList() =
         let initialValue = [1 .. 6]
 
-        let result = __
+        let result = initialValue |> List.sum
 
         AssertEquality 21 result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FilterOutOddNumberFromAList() =
         let initialValue = [3 .. 12]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.filter (fun x -> x % 2 = 0)
 
         AssertEquality [4; 6; 8; 10; 12] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SumTheIntegersContainedInTheStrings() =
         let initialValue = [ "22"; "10"; "3"; "20" ]
 
-        let result = initialValue |> __
+        let result = 
+            initialValue 
+            |> List.map int 
+            |> List.sum
 
         AssertEquality result 55
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ComputerTheAverageNumberOfLetters() =
         let initialValue =
             ["It"; "is"; "an"; "ancient"; "Mariner";
@@ -249,16 +255,19 @@ module ExercisesDay1 =
              "By"; "thy"; "long"; "grey"; "beard"; "and"; "glittering"; "eye";
              "Now"; "wherefore"; "stoppst"; "thou"; "me"]
 
-        let result = __
+        let result = 
+                    initialValue 
+                    |> List.map (fun x -> float x.Length) 
+                    |> List.average  
 
         AssertEquality
             4.25
             result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let TestIfEverWordContainsTheLetterA() =
         let test (l: list<string>) =
-            __
+            l |> List.forall(fun x -> x.Contains("a"))
 
         AssertEquality
             true
@@ -269,12 +278,19 @@ module ExercisesDay1 =
             (test ["we"; "stuck"; "nor"; "breath"; "nor"; "motion"])
 
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let CaesarCipher() =
         let initialValue = "Encode me!" |> List.ofSeq
 
+        let rot13 x =
+            if x >='a' && x <='m' || x >='A' && x<='M' then 
+                char ( int x + 13)
+            elif x >='n' && x <= 'z' || x >='N' && x <='Z' then
+                char (int x - 13)
+            else x
+
         let encoder (l: list<char>) =
-            __
+            l |> List.map rot13
 
         let encoded = encoder initialValue
         let decoded = encoder encoded
@@ -287,10 +303,12 @@ module ExercisesDay1 =
             ['E'; 'n'; 'c'; 'o'; 'd'; 'e'; ' '; 'm'; 'e'; '!']
             decoded
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let TestIfAWordHasNoRepeatingLetter() =
         let test (s: string) =
-            __
+            let distLettters = 
+                s |> Seq.toList |> List.distinct |> List.length 
+            distLettters = s.Length 
 
         AssertEquality
             true
@@ -300,19 +318,26 @@ module ExercisesDay1 =
             false
             (test "cheerios")
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SumSquareDifference() =
         // The sum of the squares of the first ten natural numbers is (1^2 + 1^2 + 3^2 .. 10^2)
         // The square of the sum of the first ten natural numbers is (1 + 1 + 3 .. 10) ^2
-        let sumOfSquares = [ 1 .. 10 ] |> __
-        let squareOfTheSum = [ 1 .. 10 ] |> __
+        let sumOfSquares = [ 1 .. 10 ] |> List.sumBy (fun x -> x*x)
+        let squareOfTheSum =
+            let s =
+                [ 1 .. 10 ] 
+                |> List.sum 
+            s * s
 
-        AssertEquality (sumOfSquares - squareOfTheSum) 2640
+        AssertEquality (squareOfTheSum - sumOfSquares) 2640
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FindTheSumOfAllTheMultiples() =
         // Find the sum of all the multiples of 3 or 5 below 1000.
 
-        let result = __
+        let result = 
+            [1..999]
+            |>List.filter  (fun x-> x % 3=0 || x%5=0)
+            |>List.sum 
 
         AssertEquality result 233168
