@@ -13,9 +13,15 @@ module ExercisesDay2_3Clock =
 
 
     // TODO: define the clock time
-    type Clock = FILL_ME_IN
+    type Clock =
+        | Hours of int
+        | Minutes of int
 
-    let create (hours: int) (minutes: int) : Clock = __
+    let create (hours: int) (minutes: int) : Clock =
+        __
+        //let createHours =
+           // match hours with
+           // | hours when hours 
 
     let add (minutes: int) (clock: Clock) = __
 

@@ -355,7 +355,7 @@ module ExercisesUnit3 =
         AssertEquality (16, 24) (calculateMaxMin [1;3;5;7;9])
         AssertEquality (10, 14) (calculateMaxMin [1;2;3;4;5])
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FizzBuzzCodingTest() =
         // The FizzBuzz problem is a classic test given in coding interviews. The task
         // is simple: Print integers 1 to N, but print “Fizz” if an integer is divisible
@@ -364,8 +364,18 @@ module ExercisesUnit3 =
         // of an F# list.
 
         let fizzBuzzList n =
-            __
-
+            let fizzbuzz i =
+                match i with
+                | i when i % 3 = 0 && i % 5 = 0-> "FizzBuzz"
+                | i when i % 3 = 0 -> "Fizz"
+                | i when i % 5 = 0 -> "Buzz"
+                | i -> string i
+                
+            let newList = [for i in 1..n do yield fizzbuzz i]
+            newList
+            
         let result = ["1"; "2"; "Fizz"; "4"; "Buzz"; "Fizz"; "7"; "8"; "Fizz"; "Buzz"; "11"; "Fizz"; "13"; "14"; "FizzBuzz"; "16"; "17"; "Fizz"; "19"; "Buzz"]
-
-        AssertEquality result (fizzBuzzList 20)
+        
+        let myResult = (fizzBuzzList 20)
+        printfn "%A" myResult 
+        AssertEquality result myResult
