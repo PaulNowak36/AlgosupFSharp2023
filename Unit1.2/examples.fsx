@@ -11,6 +11,7 @@ open System
 
 
 // These are examples of different types of numbers
+let value = 1
 
 let sampleInteger = 176
 
@@ -111,6 +112,8 @@ let blockCaps = name.ToUpper()
 let character = 'c'
 
 let reversed = Seq.rev name |> Seq.toList
+
+
 
 let reversedAsArray = reversed |> Seq.toArray
 

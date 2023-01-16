@@ -8,58 +8,57 @@ module ExercisesDay1 =
     let AssertExpectation() =
         let expectedValue = 1 + 1
         let actualValue = 2
-
         AssertEquality expectedValue actualValue
 
     //Easy, right? Now try one more
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FillInValues() =
-        AssertEquality (1 + 1) __
+        AssertEquality (1 + 1) 2
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let HexadecimalsLiterals() =
         let actualValue = 0x56 + 0x0F
 
-        AssertEquality __ actualValue
+        AssertEquality 101 actualValue
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let BinaryLiterals() =
         let actualValue = 0b00100101 + 0b00001010
 
-        AssertEquality __ actualValue
+        AssertEquality 47 actualValue
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let NestedScopes() =
         let actualValue =
-            let x = __ + 12
+            let x = 71 + 12
             x
 
         AssertEquality 83 actualValue
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let StringConcatValue() =
         let message = "hello, " + "world!"
 
-        AssertEquality message __
+        AssertEquality message "hello, world!"
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FormatStringLiterals() =
         let num = 0x7D
         let actualValue = $"An interesting number: '{num}'"
 
-        AssertEquality __ actualValue
+        AssertEquality "An interesting number: '125'" actualValue
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let AppendingToAList() =
         let initialValue = [2; 3]
 
-        let result = __ initialValue
+        let result = 1 :: initialValue
 
         AssertEquality [1; 2; 3] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FirstFunction() =
-        let compute x = __
+        let compute x = x * 7
 
         let result1 = compute 2
         let result2 = compute 5
@@ -71,7 +70,7 @@ module ExercisesDay1 =
         AssertEquality 49 result3
         AssertEquality 63 result4
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let NestingFunctions() =
         let quadruple x =
             let double x =
@@ -80,9 +79,9 @@ module ExercisesDay1 =
             double(double(x))
 
         let result = quadruple 7
-        AssertEquality result __
+        AssertEquality result 28
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let VariablesInTheParentScopeCanBeAccessed() =
         let suffix = "!!!!"
 
@@ -93,13 +92,13 @@ module ExercisesDay1 =
 
         let caffeinatedReply = caffeinated "welcome here"
 
-        AssertEquality caffeinatedReply __
+        AssertEquality caffeinatedReply "WELCOME HERE!!!!"
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let FirstPartialFunction() =
         let sub x y = x - y
 
-        let subFrom49 = __
+        let subFrom49 = sub 49
 
         let result1 = subFrom49 10
         let result2 = subFrom49 20
@@ -111,7 +110,7 @@ module ExercisesDay1 =
         AssertEquality 19 result3
         AssertEquality 09 result4
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SometimesYouNeedParenthesisToGroupThings() =
         let add x y =
             x + y
@@ -119,14 +118,14 @@ module ExercisesDay1 =
         // TRY IT: What happens if you remove the parenthesis?
         let result = add (add 5 7) (add 2 2)
 
-        AssertEquality result __
+        AssertEquality result 16
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let StringFormattingRevisited() =
         // It's time to apply what you've learned so far. Fill in the function below to
         // make the asserts pass
         let getFunFacts x =
-            __
+            $"{x} doubled is {x*2}, and {x} tripled is {x*3}!"
 
         let funFactsAboutThree = getFunFacts 2
         let funFactsAboutSix = getFunFacts 7
@@ -134,45 +133,45 @@ module ExercisesDay1 =
         AssertEquality "2 doubled is 4, and 2 tripled is 6!" funFactsAboutThree
         AssertEquality "7 doubled is 14, and 7 tripled is 21!" funFactsAboutSix
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let CreatingLists() =
         let list = ["pear"; "apple"; "grape"; "peach"]
 
         //Note: The list data type in F# is a singly linked list,
         //      so indexing elements is O(n).
 
-        AssertEquality list.Head __
-        AssertEquality list.Tail __
-        AssertEquality list.Length __
+        AssertEquality list.Head "pear"
+        AssertEquality list.Tail ["apple"; "grape"; "peach"]
+        AssertEquality list.Length 4
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let CreatingListsWithARange() =
         let list = [0..3]
 
-        AssertEquality list.Head __
-        AssertEquality list.Tail __
+        AssertEquality list.Head 0
+        AssertEquality list.Tail [1; 2; 3]
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ReversingAList() =
         let initialValue = [2; 3; 4]
 
-        let result = __ initialValue
+        let result = List.rev initialValue
 
         AssertEquality [4; 3; 2] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SortingAList() =
         let initialValue = [9; 8; 9; 5; 4]
 
-        let result = __ initialValue
+        let result = List.sort initialValue
 
         AssertEquality [4; 5; 8; 9; 9] result
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let SortingAWordListByLength() =
         let initialValue = ["April"; "is"; "the"; "cruelest"; "month"; ]
 
-        let result = initialValue |> __
+        let result = initialValue |> List.sortBy()
 
         AssertEquality ["is"; "the"; "April"; "month"; "cruelest"] result
 
