@@ -6,6 +6,7 @@ nuget Fake.Core.Target
 nuget Fake.IO.FileSystem //"
 // include Fake modules, see Fake modules section
 
+open System
 open System.IO
 open Fake.Core
 open Fake.Build
@@ -27,7 +28,14 @@ Target.create "BuildDotnet" (fun _ ->
 )
 
 Target.create "CopySharedLip" (fun _ ->
-    File.Copy("CSharedLibrary/build/Debug/hello_library.dll", "FsProgram/bin/Debug/net7.0/hello_library.dll", true)
+    if Environment.isWindows then
+        File.Copy("CSharedLibrary/build/Debug/hello_library.dll", "FsProgram/bin/Debug/net7.0/hello_library.dll", true)
+    elif Environment.isLinux then
+        File.Copy("CSharedLibrary/build/libhello_library.so", "FsProgram/bin/Debug/net7.0/libhello_library.so", true)
+    elif Environment.isMacOS then
+        failwith "todo"
+    else
+        failwith "unknow platform"
 )
 
 Target.create "RunDotnet" (fun _ ->
