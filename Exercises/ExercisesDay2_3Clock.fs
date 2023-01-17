@@ -18,10 +18,26 @@ module ExercisesDay2_3Clock =
         | Minutes of int
 
     let create (hours: int) (minutes: int) : Clock =
-        __
-        //let createHours =
-           // match hours with
-           // | hours when hours 
+
+        let rec newMinutes = 
+            match minutes with
+            | minutes when minutes >= 60 -> newMinutes (minutes - 60)
+            | minutes when minutes >= 10 && minutes < 60-> $"{minutes}"
+            | minutes when minutes < 10 -> $"0{minutes}"
+            newMinutes
+
+        let rec newHours = 
+            match hours with
+            | hours when hours >= 24 -> newHours (hours - 24)
+            | hours when hours >= 10 && hours < 23-> $"{hours}"
+            | hours when hours < 10 -> $"0{hours}"
+            newHours
+    
+
+        
+        let newClock = {Hours = newHours; Minutes = newMinutes }
+        let stringClock = $"{newClock.Hours}:{newClock.Minutes}"
+        stringClock
 
     let add (minutes: int) (clock: Clock) = __
 
