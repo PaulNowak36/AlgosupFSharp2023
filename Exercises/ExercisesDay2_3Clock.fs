@@ -31,21 +31,23 @@ module ExercisesDay2_3Clock =
 
         let hours =
             if (minutes >= 60) then (clock.Hours + (minutes / 60))
-            elif (minutes < -60) then (clock.Hours - abs(minutes / 60))
+            //elif (minutes < 0  && minutes >= -60) then (clock.Hours - 1)
+            elif (minutes < 0 && minutes >= -60) then (clock.Hours - 1)
+            elif (minutes < -60) then (clock.Hours - abs(minutes / 60) - 1)
             else clock.Hours
         
         let rec displayMinutes minutes =
             match minutes with
             | minutes when minutes >= 60 -> displayMinutes (minutes - 60)
             | minutes when minutes >= 10 && minutes < 60-> $"{minutes}"
-            | minutes when minutes <= 0 && minutes < 10 -> $"0{minutes}"
+            | minutes when minutes >= 0 && minutes < 10 -> $"0{minutes}"
             | minutes when minutes < 0 -> displayMinutes (60 + minutes)
         
         let rec displayHours (hours:int) =
             match hours with
             | hours when hours >= 24 -> displayHours (hours - 24)
-            | hours when hours >= 10 && hours < 23-> $"{hours}"
-            | hours when hours < 10 -> $"0{hours}"
+            | hours when hours >= 10 && hours < 24-> $"{hours}"
+            | hours when hours >= 0 && hours < 10 -> $"0{hours}"
             | hours when hours < 0 -> displayHours (24 + hours)
                 
         sprintf "%s:%s" (displayHours hours) (displayMinutes minutes)
