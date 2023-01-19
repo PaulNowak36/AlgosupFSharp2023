@@ -21,9 +21,14 @@ module ExercisesDay2_3Clock =
         let newClock = {Hours= hours; Minutes= minutes;}
         newClock      
 
-    let add (minutes: int) (clock: Clock) = __
+    let add (minutes: int) (clock: Clock) =  
+        let minutePlus = {clock with Minutes = clock.Minutes + minutes}
+        minutePlus
+        //clock.Minutes = clock.Minutes + minutes
 
-    let subtract (minutes: int) (clock: Clock) = __
+    let subtract (minutes: int) (clock: Clock) = 
+        let minuteMinus = {clock with Minutes = clock.Minutes - minutes}
+        minuteMinus
 
     let display (clock: Clock) = 
         
