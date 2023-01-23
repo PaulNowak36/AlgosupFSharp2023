@@ -17,8 +17,39 @@ module ExercisesDay2_3Clock =
         {Hours: int;
          Minutes: int;}
 
+    
+
     let create (hours: int) (minutes: int) : Clock =
-        let newClock = {Hours= hours; Minutes= minutes;}
+        
+        let hours =
+            if (minutes >= 60) then (hours + (minutes / 60))
+            elif (minutes < 0 && minutes >= -60) then (hours - 1)
+            elif (minutes < -60) then (hours - abs(minutes / 60) - 1)
+            else hours
+        
+        let rec setMinutes minutes =
+            match minutes with
+            | minutes when minutes > 60 -> setMinutes (minutes - 60)
+            | minutes when minutes = 60 -> setMinutes (0)
+            | minutes when minutes >= 0 && minutes < 60 -> minutes
+            | minutes when minutes < 0 -> setMinutes (60 + minutes)
+        
+        let rec setHours (hours:int) =
+            match hours with
+            | hours when hours > 24 -> setHours (hours - 24)
+            | hours when hours = 24 -> setHours (0)
+            | hours when hours >= 0 && hours < 24 -> hours
+            | hours when hours < 0 -> setHours (24 + hours)
+        
+        //let newMinutes = minutes
+
+        //let newHours = hours
+        
+        //INVERSER haut et bas
+        
+        
+        
+        let newClock = {Hours= setHours hours; Minutes= setMinutes minutes;}
         newClock      
 
     let add (minutes: int) (clock: Clock) =  
@@ -30,32 +61,19 @@ module ExercisesDay2_3Clock =
         let minuteMinus = {clock with Minutes = clock.Minutes - minutes}
         minuteMinus
 
+    
+
     let display (clock: Clock) = 
         
-        let minutes =  clock.Minutes
+        let stringMinutes =  
+            if clock.Minutes < 10 then $"0{clock.Minutes}"
+            else $"{clock.Minutes}"
 
-        let hours =
-            if (minutes >= 60) then (clock.Hours + (minutes / 60))
-            //elif (minutes < 0  && minutes >= -60) then (clock.Hours - 1)
-            elif (minutes < 0 && minutes >= -60) then (clock.Hours - 1)
-            elif (minutes < -60) then (clock.Hours - abs(minutes / 60) - 1)
-            else clock.Hours
-        
-        let rec displayMinutes minutes =
-            match minutes with
-            | minutes when minutes >= 60 -> displayMinutes (minutes - 60)
-            | minutes when minutes >= 10 && minutes < 60-> $"{minutes}"
-            | minutes when minutes >= 0 && minutes < 10 -> $"0{minutes}"
-            | minutes when minutes < 0 -> displayMinutes (60 + minutes)
-        
-        let rec displayHours (hours:int) =
-            match hours with
-            | hours when hours >= 24 -> displayHours (hours - 24)
-            | hours when hours >= 10 && hours < 24-> $"{hours}"
-            | hours when hours >= 0 && hours < 10 -> $"0{hours}"
-            | hours when hours < 0 -> displayHours (24 + hours)
+        let stringHours =
+            if clock.Hours < 10 then $"0{clock.Hours}"
+            else $"{clock.Hours}"   
                 
-        sprintf "%s:%s" (displayHours hours) (displayMinutes minutes)
+        sprintf "%s:%s" stringHours stringMinutes
 
     [<Test>]
     let ``Clocks - On the hour`` () =
