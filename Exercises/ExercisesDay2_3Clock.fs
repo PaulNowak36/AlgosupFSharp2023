@@ -53,9 +53,25 @@ module ExercisesDay2_3Clock =
         newClock      
 
     let add (minutes: int) (clock: Clock) =  
-        let minutePlus = {clock with Minutes = clock.Minutes + minutes}
-        minutePlus
-        //clock.Minutes = clock.Minutes + minutes
+        let clockUpdated =
+            let addition = clock.Minutes + minutes
+            let minutePlus = 
+                if addition = 60 then 3 
+                elif addition > 60 then addition % 60
+                else addition
+            
+            let hourPlus = 
+                if addition = 60 then 1 
+                elif addition > 60 then addition / 60
+                else 0
+            
+            let updateHour =
+                if  clock.Hours + hourPlus = 24 then 0
+                elif  clock.Hours + hourPlus > 24 then clock.Hours + hourPlus % 24
+                else clock.Hours + hourPlus
+            
+            {clock with Hours = updateHour; Minutes = minutePlus}
+        clockUpdated
 
     let subtract (minutes: int) (clock: Clock) = 
         let minuteMinus = {clock with Minutes = clock.Minutes - minutes}
