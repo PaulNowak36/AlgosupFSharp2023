@@ -41,13 +41,6 @@ module ExercisesDay2_3Clock =
             | hours when hours >= 0 && hours < 24 -> hours
             | hours when hours < 0 -> setHours (24 + hours)
         
-        //let newMinutes = minutes
-
-        //let newHours = hours
-        
-        //INVERSER haut et bas
-        
-        
         
         let newClock = {Hours= setHours hours; Minutes= setMinutes minutes;}
         newClock      
@@ -56,7 +49,7 @@ module ExercisesDay2_3Clock =
         let clockUpdated =
             let addition = clock.Minutes + minutes
             let minutePlus = 
-                if addition = 60 then 3 
+                if addition = 60 then 0 
                 elif addition > 60 then addition % 60
                 else addition
             
@@ -74,8 +67,23 @@ module ExercisesDay2_3Clock =
         clockUpdated
 
     let subtract (minutes: int) (clock: Clock) = 
-        let minuteMinus = {clock with Minutes = clock.Minutes - minutes}
-        minuteMinus
+        let clockUpdated =
+            let substraction = clock.Minutes - minutes
+            let minuteMinus = 
+                if substraction < 0 then 60 + (substraction % 60) 
+                else substraction
+            
+            let hourMinus = 
+                if substraction < 0 then (substraction / 60) - 1 
+                else 0
+            
+            let updateHour =
+                if  (clock.Hours + hourMinus) % 24 = 0 then 0
+                elif  clock.Hours + hourMinus < 0 then 24 + ((clock.Hours + hourMinus) % 24)
+                else clock.Hours + hourMinus
+            
+            {clock with Hours = updateHour; Minutes = minuteMinus}
+        clockUpdated
 
     
 
