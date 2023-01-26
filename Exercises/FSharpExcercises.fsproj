@@ -15,6 +15,13 @@
     <Compile Include="ExercisesDay2_6Hamming.fs" />
     <Compile Include="ExercisesDay2_7Primes.fs" />
     <Compile Include="ExercisesDay2_8Minesweeper.fs" />
+    <Compile Include="ExercisesDay3_1ArmstrongNumbers.fs" />
+    <Compile Include="ExercisesDay3_2Darts.fs" />
+    <Compile Include="ExercisesDay3_4BinarySearch.fs" />
+    <Compile Include="ExercisesDay3_5FoodChain.fs" />
+    <Compile Include="ExercisesDay3_6PascalsTriangle.fs" />
+    <Compile Include="ExercisesDay3_7Ledger.fs" />
+    <Compile Include="ExercisesDay3_8AtbashCipher.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
