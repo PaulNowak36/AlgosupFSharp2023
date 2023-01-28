@@ -41,17 +41,48 @@ module ExercisesDay2_4RobotSimulator =
 
     let move instructions robot =
         let robotDirection = robot.direction
+        let robotPosition = robot.position
         let robotRight robot =
-            match robotDirection with
-            |Direction.West -> Direction.North
-            |Direction.North -> Direction.East
-            |Direction.East -> Direction.South
-            |Direction.South -> Direction.West
-             
-            {robot with direction = robotDirection}
-            
+            let newRobot =
+                let newDirection =
+                    match robotDirection with
+                    |Direction.West -> Direction.North
+                    |Direction.North -> Direction.East
+                    |Direction.East -> Direction.South
+                    |Direction.South -> Direction.West
+                 
+                {robot with direction = newDirection}
+            newRobot
+        
+        let robotLeft robot =
+            let newRobot =
+                let newDirection =
+                    match robotDirection with
+                    |Direction.West -> Direction.South
+                    |Direction.North -> Direction.West
+                    |Direction.East -> Direction.North
+                    |Direction.South -> Direction.East
+                 
+                {robot with direction = newDirection}
+            newRobot
+        
+        let robotAdvance robot =
+            let gridCalculation a b = (fst a + fst b, snd a + snd b)
+            let newRobot =
+                let newPosition = 
+                     match robotDirection with
+                     |Direction.North -> (gridCalculation robotPosition (0, 1))
+                     |Direction.South -> (gridCalculation robotPosition (0, -1))
+                     |Direction.East -> (gridCalculation robotPosition (1, 0))
+                     |Direction.West -> (gridCalculation robotPosition (-1, 0))
+                    
+                {robot with position = newPosition}
+            newRobot
+          
 
         if instructions = "R" then robotRight robot
+        elif instructions = "L" then robotLeft robot
+        elif instructions = "A" then robotAdvance robot
         else robot 
 
 

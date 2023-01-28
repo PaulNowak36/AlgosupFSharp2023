@@ -23,7 +23,7 @@ module ExercisesDay3_2Darts =
 
     let score (x: double) (y: double): int = __
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Darts - Missed target`` () =
         score -9.0 9.0 |> AssertEquality 0
 

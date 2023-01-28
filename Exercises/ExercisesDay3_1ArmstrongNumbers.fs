@@ -19,7 +19,7 @@ module ExercisesDay3_1ArmstrongNumbers =
 
     let isArmstrongNumber (number: int): bool = __
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``ArmstrongNumbers - Zero is an Armstrong number`` () =
         isArmstrongNumber 0 |> AssertEquality true
 
