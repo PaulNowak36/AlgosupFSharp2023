@@ -39,13 +39,13 @@ module ExercisesDay2_4RobotSimulator =
         let newRobot = {direction = direction; position = position}
         newRobot
 
-    let move instructions robot =
-        let robotDirection = robot.direction
-        let robotPosition = robot.position
+    let move (instructions: string) robot =
+        let orders = Seq.toList instructions
+
         let robotRight robot =
             let newRobot =
                 let newDirection =
-                    match robotDirection with
+                    match robot.direction with
                     |Direction.West -> Direction.North
                     |Direction.North -> Direction.East
                     |Direction.East -> Direction.South
@@ -57,7 +57,7 @@ module ExercisesDay2_4RobotSimulator =
         let robotLeft robot =
             let newRobot =
                 let newDirection =
-                    match robotDirection with
+                    match robot.direction with
                     |Direction.West -> Direction.South
                     |Direction.North -> Direction.West
                     |Direction.East -> Direction.North
@@ -70,20 +70,29 @@ module ExercisesDay2_4RobotSimulator =
             let gridCalculation a b = (fst a + fst b, snd a + snd b)
             let newRobot =
                 let newPosition = 
-                     match robotDirection with
-                     |Direction.North -> (gridCalculation robotPosition (0, 1))
-                     |Direction.South -> (gridCalculation robotPosition (0, -1))
-                     |Direction.East -> (gridCalculation robotPosition (1, 0))
-                     |Direction.West -> (gridCalculation robotPosition (-1, 0))
+                     match robot.direction with
+                     |Direction.North -> (gridCalculation robot.position (0, 1))
+                     |Direction.South -> (gridCalculation robot.position (0, -1))
+                     |Direction.East -> (gridCalculation robot.position (1, 0))
+                     |Direction.West -> (gridCalculation robot.position (-1, 0))
                     
                 {robot with position = newPosition}
             newRobot
-          
-
-        if instructions = "R" then robotRight robot
-        elif instructions = "L" then robotLeft robot
-        elif instructions = "A" then robotAdvance robot
-        else robot 
+        
+        let doTask (task: char) robot =
+            match task with
+            |'R' -> robotRight robot
+            |'L' -> robotLeft robot
+            |'A' -> robotAdvance robot
+            | _ -> robot
+            
+        let rec giveOrders (orders: char list) robot =
+            match orders with
+            |[] -> robot
+            |[a] -> doTask a robot
+            |x::xs -> giveOrders xs (doTask x robot) 
+        
+        giveOrders orders robot
 
 
     [<Test>]
@@ -171,8 +180,9 @@ module ExercisesDay2_4RobotSimulator =
     [<Test>]
     let ``RobotSimulator - Moving east and north from README`` () =
         let robot = create Direction.North (7, 3)
-        let expected = create Direction.West (9, 4)
+        let expected = create Direction.West (9, 4) // West(9, 4)
         move "RAALAL" robot |> AssertEquality expected
+        //RAALAL
 
     [<Test>]
     let ``RobotSimulator - Moving west and north`` () =
