@@ -27,40 +27,48 @@ module ExercisesDay2_6Hamming =
     // an attempt to calculate it between sequences of different lengths should
     // not work.
 
-    let distance (strand1: string) (strand2: string): int option = __
+    let distance (strand1: string) (strand2: string): int option = 
+        let seq1 = Seq.toList strand1
+        let seq2 = Seq.toList strand2
 
-    [<Ignore("Not implemented");Test>]
+        let checkEquality =   
+            (seq1, seq2) ||> List.forall2 (=)
+        
+        if checkEquality = true then Some 0
+        else None
+
+    [<Test>]
     let ``Hamming - Empty strands`` () =
         distance "" "" |> AssertEquality (Some 0)
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Single letter identical strands`` () =
         distance "A" "A" |> AssertEquality (Some 0)
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Single letter different strands`` () =
         distance "G" "T" |> AssertEquality (Some 1)
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Long identical strands`` () =
         distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> AssertEquality (Some 0)
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Long different strands`` () =
         distance "GGACGGATTCTG" "AGGACGGATTCT" |> AssertEquality (Some 9)
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Disallow first strand longer`` () =
         distance "AATG" "AAA" |> AssertEquality None
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Disallow second strand longer`` () =
         distance "ATA" "AGTG" |> AssertEquality None
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Disallow empty first strand`` () =
         distance "" "G" |> AssertEquality None
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Hamming - Disallow empty second strand`` () =
         distance "G" "" |> AssertEquality None

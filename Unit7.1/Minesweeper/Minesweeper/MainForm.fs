@@ -135,6 +135,16 @@ type MainForm () as this =
                         ....
                         .*..
                         ...."
+        
+        let mines = ['.'; '*']
+
+        let rnd = Random()
+        let randomMine() = mines |> List.item (rnd.Next(2))
+
+        let randomMinefield =
+                    [| for i in 0 .. 24 do                       
+                                yield randomMine() |] 
+        printfn "%A" randomMinefield
 
         // split and clean the minefield to a character array
         let chars =
@@ -142,7 +152,7 @@ type MainForm () as this =
             minefield.Split([|'\r';'\n'|], options)
             |> Array.map (fun line -> line.Trim().ToCharArray() )
 
-        let minefield = Minefield(chars)
+        let minefield = Minefield(randomMinefield)
 
         let reveal (square:Button) c =
             square.Text <- c.ToString()
@@ -153,11 +163,16 @@ type MainForm () as this =
 
         // TODO create a matrix of buttons to represent the squares on the board
         let squares =
-            [| [| new Button() |] |]
+            [| for y in 0 .. minefield.Height - 1 do
+                [|  for x in 0 .. minefield.Width - 1 do
+                        yield new Button() |] |]
 
         let subscribe (x,y) (square:Button) =
             square.Click.Add (fun _ ->
-                // TODO call minefield.Reveal (x,y) and handle the result
+                let revealed = minefield.Reveal (x,y)
+                for r in revealed do
+                    let b = squares.[r.Y].[r.X]
+                    reveal b r.Value
                 ())
 
         let layout = new StackLayout()
@@ -167,13 +182,14 @@ type MainForm () as this =
         // then how to add a single button to the row.
         // You should ensure all the buttons from the matrix are added to the layout
         // -------------------- start button layout --------------------
-        let buttonRow = new StackLayout(Orientation=Orientation.Horizontal)
-        layout.Items.Add(new StackLayoutItem(buttonRow))
+        for y in 0 .. minefield.Height - 1 do
+            let buttonRow = new StackLayout(Orientation=Orientation.Horizontal)
+            layout.Items.Add(new StackLayoutItem(buttonRow))
 
-        let x, y = 0, 0
-        let button = squares.[y].[x]
-        subscribe (0,0) button
-        buttonRow.Items.Add(new StackLayoutItem(button))
+            for x in 0 .. minefield.Width - 1 do
+                let button = squares.[y].[x]
+                subscribe (0,0) button
+                buttonRow.Items.Add(new StackLayoutItem(button))
         // --------------------  end button layout  --------------------
 
         // TODO detect when the game is won or lost and tell the user
