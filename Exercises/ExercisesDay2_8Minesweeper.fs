@@ -43,19 +43,19 @@ module ExercisesDay2_8Minesweeper =
 
     let annotate input =  __
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - No rows`` () =
         let minefield: string list = []
         let expected: string list = []
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - No columns`` () =
         let minefield = [""]
         let expected = [""]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - No mines`` () =
         let minefield =
             [ "   ";
@@ -67,7 +67,7 @@ module ExercisesDay2_8Minesweeper =
             "   " ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Minefield with only mines`` () =
         let minefield =
             [ "***";
@@ -79,7 +79,7 @@ module ExercisesDay2_8Minesweeper =
             "***" ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Mine surrounded by spaces`` () =
         let minefield =
             [ "   ";
@@ -91,7 +91,7 @@ module ExercisesDay2_8Minesweeper =
             "111" ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Space surrounded by mines`` () =
         let minefield =
             [ "***";
@@ -103,19 +103,19 @@ module ExercisesDay2_8Minesweeper =
             "***" ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Horizontal line`` () =
         let minefield = [" * * "]
         let expected = ["1*2*1"]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Horizontal line, mines at edges`` () =
         let minefield = ["*   *"]
         let expected = ["*1 1*"]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Vertical line`` () =
         let minefield =
             [ " ";
@@ -131,7 +131,7 @@ module ExercisesDay2_8Minesweeper =
             "1" ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Vertical line, mines at edges`` () =
         let minefield =
             [ "*";
@@ -147,7 +147,7 @@ module ExercisesDay2_8Minesweeper =
             "*" ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Cross`` () =
         let minefield =
             [ "  *  ";
@@ -163,7 +163,7 @@ module ExercisesDay2_8Minesweeper =
             " 2*2 " ]
         annotate minefield |> AssertEquality expected
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``Minesweeper - Large minefield`` () =
         let minefield =
             [ " *  * ";

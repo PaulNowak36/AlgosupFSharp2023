@@ -32,7 +32,8 @@ module ExercisesDay2_6Hamming =
         let seq2 = Seq.toList strand2
 
         let checkEquality =   
-            (seq1, seq2) ||> List.forall2 (=)
+            if strand1 = strand2 then true
+            else false
 
         let countHamming (seq1: char list) (seq2: char list): int = 
             //let count = 0
@@ -43,7 +44,7 @@ module ExercisesDay2_6Hamming =
   
             
         
-        if seq1.Length <> seq2.Length then None
+        if (seq1.Length <> seq2.Length) then None
         elif checkEquality = false then Some (countHamming seq1 seq2)
         else Some 0
 

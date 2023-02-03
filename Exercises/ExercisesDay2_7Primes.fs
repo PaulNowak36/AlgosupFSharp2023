@@ -11,6 +11,13 @@ module ExercisesDay2_7Primes =
     // the 6th prime is 13.
 
     let prime nth : int option = __
+        // let checkPrime (number: int) :bool =
+        //     let primeNumber : bool =
+        //         forall2
+
+        //     primeNumber
+                
+
 
     [<Test>]
     let ``Primes - First prime`` () =
