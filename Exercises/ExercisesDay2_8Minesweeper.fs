@@ -41,7 +41,10 @@ module ExercisesDay2_8Minesweeper =
     // ·111·
     // ```
 
-    let annotate input =  __
+    let annotate (input: string list) =  
+        let newMinefield = input
+        newMinefield 
+
 
     [<Test>]
     let ``Minesweeper - No rows`` () =
