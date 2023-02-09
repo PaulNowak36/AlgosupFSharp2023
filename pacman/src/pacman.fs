@@ -77,7 +77,6 @@ module Images =
             | -1,0 -> pl1Img
             | 1,0 -> pr1Img
             | _ -> lastp
-        //pu1Img
         lastp <- p
         p
 
@@ -281,9 +280,30 @@ module Game =
         context.fillRect (0., 0. , 256., 256.);
 
         // Render individual tiles of the maze
+        let bush = 
+            createBrush context (255uy, 255uy, 255uy, 255uy)
 
-        // TODO create a yellow brush
-        // TODO create a blue brush
+        let red = 
+            createBrush context (255uy, 0uy, 0uy, 0uy)
+        
+        let blue = 
+            createBrush context (0uy, 255uy, 0uy, 0uy)
+
+        for y in 0 .. maze.Length - 1 do
+            let line = maze.[y]
+            for x in 0 .. line.Length - 1  do
+                let c = line.[x] 
+                let data, color = toTile(c)
+                
+                let brush = 
+                    if color = 'B' then blue
+                    else red
+                let drawPoint (x',y') =
+                    context.putImageData
+                        (bush, float (x*8 + x'), float (y*8 + y'))
+                draw drawPoint data
+                    
+
         // TODO loop over the row in the maze
             // TODO loop each character in the maze row
                 // * convert the character to a title
