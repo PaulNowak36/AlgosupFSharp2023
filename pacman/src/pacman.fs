@@ -283,11 +283,11 @@ module Game =
         let bush = 
             createBrush context (255uy, 255uy, 255uy, 255uy)
 
-        let red = 
-            createBrush context (255uy, 0uy, 0uy, 0uy)
+        let yellow = 
+            createBrush context (255uy, 255uy, 0uy, 255uy)
         
         let blue = 
-            createBrush context (0uy, 255uy, 0uy, 0uy)
+            createBrush context (0uy, 0uy, 255uy, 255uy)
 
         for y in 0 .. maze.Length - 1 do
             let line = maze.[y]
@@ -297,10 +297,10 @@ module Game =
                 
                 let brush = 
                     if color = 'B' then blue
-                    else red
+                    else yellow
                 let drawPoint (x',y') =
                     context.putImageData
-                        (bush, float (x*8 + x'), float (y*8 + y'))
+                        (brush, float (x*8 + x'), float (y*8 + y'))
                 draw drawPoint data
                     
 
