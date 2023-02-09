@@ -221,16 +221,21 @@ module Game =
 
     let canGoUp (x,y) =
         // TODO calculate if sprite can move up
-        true
+        if noWall(x,y) (0,-1) = true then
+            true
+        else false
     let canGoDown (x,y) =
-        // TODO calculate if sprite can move down
-        true
+        if noWall(x,y) (0,1) = true then
+            true
+        else false
     let canGoLeft (x,y) =
-        // TODO calculate if sprite can move left
-        true
+        if noWall(x,y) (-1,0) = true then
+            true
+        else false
     let canGoRight (x,y) =
-        // TODO calculate if sprite can move right
-        true
+        if noWall(x,y) (1,0) = true then
+            true
+        else false
 
     // Background rendering
     // ================================
@@ -303,12 +308,6 @@ module Game =
                         (brush, float (x*8 + x'), float (y*8 + y'))
                 draw drawPoint data
                     
-
-        // TODO loop over the row in the maze
-            // TODO loop each character in the maze row
-                // * convert the character to a title
-                // * use the title data to use the brush Y for yellow, B for blue
-                // * use the 'draw' function to drawn the title bits
         background
 
     // Clear whatever is rendered in the specified Maze cell
