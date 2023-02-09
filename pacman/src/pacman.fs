@@ -68,7 +68,16 @@ module Images =
     let imageAt(x, y, directionVector) =
         // TODO choose the correct image for Pacman based on his direction and location
         // remember you should use the location to animate the mouth
-        let p = pu1Img
+        printfn "%A" directionVector
+
+        let p = 
+            match directionVector with
+            | 0,-1 -> pu1Img
+            | 0,1 -> pd1Img
+            | -1,0 -> pl1Img
+            | 1,0 -> pr1Img
+            | _ -> lastp
+        //pu1Img
         lastp <- p
         p
 
