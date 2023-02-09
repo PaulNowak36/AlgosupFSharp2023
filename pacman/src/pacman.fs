@@ -220,7 +220,6 @@ module Game =
         isWallAt (bx,by) |> not
 
     let canGoUp (x,y) =
-        // TODO calculate if sprite can move up
         if noWall(x,y) (0,-1) = true then
             true
         else false
@@ -285,8 +284,6 @@ module Game =
         context.fillRect (0., 0. , 256., 256.);
 
         // Render individual tiles of the maze
-        let bush = 
-            createBrush context (255uy, 255uy, 255uy, 255uy)
 
         let yellow = 
             createBrush context (255uy, 255uy, 0uy, 255uy)
@@ -412,7 +409,18 @@ module Game =
     // Count number of dots in the maze
     let countDots () =
         // TODO for the end of level detection to work, you'll need to count the dots in the maze
-        1
+        let dots = maze |> Array.sumBy (fun line -> line |> Seq.filter(fun x -> x = '.') |> Seq.length)
+        let superDots = maze |> Array.sumBy (fun line -> line |> Seq.filter(fun x -> x = 'o') |> Seq.length)
+
+        let totalDots = dots + superDots
+
+        printfn "%i" dots
+        printfn "%i" superDots
+        printfn "%i" totalDots
+
+        dots
+        superDots
+        totalDots
 
     // ## The game play function
 
