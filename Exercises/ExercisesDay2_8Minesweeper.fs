@@ -42,9 +42,20 @@ module ExercisesDay2_8Minesweeper =
     // ```
 
     let annotate (input: string list) =  
-        let newMinefield = input
+        
+        let minePresent (field: string list) =
+            field |> List.map (fun s -> s.Contains "*") |> List.exists (fun s -> s = true) 
+        let newMinefield = 
+            if minePresent input = true then    
+                let mines =
+                    input |> List.sumBy (fun mine -> mine |> Seq.filter (fun c -> c ='*') |> Seq.length)
+                let updatedField = input |> List.map (fun x -> x.Replace(" ", string mines))
+                updatedField
+            else
+                input
         newMinefield 
 
+        
 
     [<Test>]
     let ``Minesweeper - No rows`` () =

@@ -408,7 +408,6 @@ module Game =
 
     // Count number of dots in the maze
     let countDots () =
-        // TODO for the end of level detection to work, you'll need to count the dots in the maze
         let dots = maze |> Array.sumBy (fun line -> line |> Seq.filter(fun x -> x = '.') |> Seq.length)
         let superDots = maze |> Array.sumBy (fun line -> line |> Seq.filter(fun x -> x = 'o') |> Seq.length)
 
@@ -618,7 +617,10 @@ module Game =
 
         let renderScore () =
             // TODO use context.fillText to render score, you'll need to set .fillStyle & .font first
-            ()
+            context.fillStyle <- !^ "#FF0000"
+            context.font <- "50px serif"
+            context.fillText("Hello world", 10, 10)
+            
 
         let renderBonus () =
             // TODO use context.drawImage to render each image in the bonus list

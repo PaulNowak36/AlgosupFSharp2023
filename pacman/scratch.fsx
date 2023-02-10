@@ -1,21 +1,33 @@
 
-let line = "...!..;.."
+let input = 
+          [ "   ";
+            " * ";
+            "   " ]
 
-let countDotsInLine line =
-    line |> Seq.filter (fun c -> c ='.') |> Seq.length 
+let yolo = "fijqhqg"
 
-let maze =
-    [|  "##/------------7/------------7##"
-        "##|............|!............|##"
-        "##|./__7./7./______7./7./__7.|##"
-        "_______7./7 |      ! /7./_______"
-        "##|./____JL__7.|!./__JL____7.|##"
-        "##|.L--------J.LJ.L--------J.|##"
-        "##|..........................|##"
-        "##L--------------------------J##" |]
+let yolohiha = "f*qhqg"
 
-let res = 
-    maze |> Array.sumBy (fun line -> countDotsInLine line)
+let star (field: string) =
+   field.Contains "*"
 
-printfn "%A" res
+let minePresent (field: string list) =
+   field |> List.map (fun s -> star s) |> List.exists (fun s -> s = true) 
+
+let test = minePresent input
+
+let mines =
+  input |> List.sumBy (fun mine -> mine |> Seq.filter (fun c -> c ='*') |> Seq.length)
+
+//let yolo = minePresent input
+
+let changeInput = input |> List.map (fun x -> x.Replace(" ", string mines))
+
+
+
+
+printfn "%A" input
+printfn "%A" test
+printfn "%A" mines
+printfn "%A" changeInput
 // let matrix =

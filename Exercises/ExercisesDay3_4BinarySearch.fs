@@ -41,7 +41,7 @@ module ExercisesDay3_4BinarySearch =
 
     let find input value = __
 
-    [<Ignore("Not implemented");Test>]
+    [<Test>]
     let ``BinarySearch - Finds a value in an array with one element`` () =
         let array = [|6|]
         let value = 6
