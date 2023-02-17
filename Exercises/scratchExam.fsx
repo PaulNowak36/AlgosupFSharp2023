@@ -51,3 +51,15 @@ let leapYear (year: int) :bool =
 
 
 leapYear 2020
+
+let isPalindrome (s:string) = 
+        let str =
+            s.ToLower()
+            |> Seq.filter (System.Char.IsLetterOrDigit)
+            |> Seq.toList
+
+        str = (str |> List.rev)
+
+let result = isPalindrome "racecar"
+
+printfn "%A" result

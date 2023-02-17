@@ -24,10 +24,12 @@ module Question04 =
                 | c :: tail ->
                     match c with
                     | ' ' -> yield word
-                            yield! words "" tail
+                             yield! words "" tail
                     | _ -> yield! words (sprintf "%s%c" word c) tail ]
         
-        sentence |> Seq.toList |> words "" |> List.rev |> join " "
+        let newSentence =
+            sentence |> Seq.toList |> words "" |> List.rev |> join " "
+        newSentence
 
 
     [<Test>]

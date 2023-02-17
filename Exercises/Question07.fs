@@ -17,9 +17,14 @@ module Question07 =
     //     Input: "A man, a plan, a canal: Panama" Output: "true"
     //     Input: "hello" Output: "false"
 
-    let isPalindrome (s:string) = __
-        //  let rec fn(a,b)=a>b||str.[a]=str.[b]&&fn(a+1,b-1)
-        //     fn(0,str.Length-1)
+    let isPalindrome (s:string) = 
+        let str =
+            s.ToLower()
+            |> Seq.filter (System.Char.IsLetterOrDigit)
+            |> Seq.toList
+
+        str = (str |> List.rev)
+        //It should work
 
     [<Test>]
     let ``Question 07 - Test Case 01``() =
