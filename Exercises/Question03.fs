@@ -17,7 +17,15 @@ module Question03 =
     // Fill in the 'leapYear' to calculate whether the given integer represents a
     // leap year
 
-    let leapYear (year: int)  =  __
+    let leapYear (year: int)  =  
+        if year % 4 = 0 && year % 100 = 0 && year % 400 = 0 then 
+            true
+        elif year % 4 = 0 && year % 100 = 0 && year % 400 <> 0 then 
+            false
+        elif year % 4 = 0 && year % 100 <> 0 && year % 400 <> 0 then 
+            true
+        else
+            false
 
     [<Test>]
     let ``Question 03 - Test Case 01``() =

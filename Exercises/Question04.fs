@@ -14,8 +14,21 @@ module Question04 =
     //     Input: "The quick brown fox jumps over the lazy dog"
     //     Output: "dog lazy the over jumps fox brown quick The"
 
-    let reverseWords (sentence:string) = __
-        // sentence|> Seq.fold (fun acc c -> (string c) :: acc) []|> String.concat ""
+    let reverseWords (sentence:string) = 
+        let join (delim : string) (items : seq<'items>) =
+            System.String.Join(delim, items)
+        
+        let rec words word text =
+            [ match text with
+                | [] -> yield word
+                | c :: tail ->
+                    match c with
+                    | ' ' -> yield word
+                            yield! words "" tail
+                    | _ -> yield! words (sprintf "%s%c" word c) tail ]
+        
+        sentence |> Seq.toList |> words "" |> List.rev |> join " "
+
 
     [<Test>]
     let ``Question 04 - Test Case 01``() =

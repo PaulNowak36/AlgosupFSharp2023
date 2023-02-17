@@ -7,9 +7,9 @@ module Question01 =
     // It should compute a new list, where every number has been doubled.
 
     let compute (numbers: list<int>) = 
-        // let NewList =
-        //     numbers |> List.Map (fun x -> x*2)
-        __
+        numbers |> List.Map (fun x -> x*2)
+        //IT SAYS UNUSED BUT I'M USING IT ???
+        
         
 
     [<Test>]
