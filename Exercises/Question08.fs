@@ -11,7 +11,15 @@ module Question08 =
     // in the array. One of the integers is missing in the array. Write a function to find the missing integer.
 
     let findMissing (arr:int[]) =
-         __
+        let max = 
+            arr |> Array.max
+        
+        let min = 
+            arr |> Array.min
+        
+        let newArray = [|min..max|]
+
+        newArray |> Array.except arr |> Array.item 0
 
     [<Test>]
     let ``Question 08 - Test Case 01``() =

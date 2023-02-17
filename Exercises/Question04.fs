@@ -15,6 +15,7 @@ module Question04 =
     //     Output: "dog lazy the over jumps fox brown quick The"
 
     let reverseWords (sentence:string) = __
+        // sentence|> Seq.fold (fun acc c -> (string c) :: acc) []|> String.concat ""
 
     [<Test>]
     let ``Question 04 - Test Case 01``() =
