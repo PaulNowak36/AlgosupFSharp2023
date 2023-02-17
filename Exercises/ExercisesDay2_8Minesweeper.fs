@@ -41,7 +41,24 @@ module ExercisesDay2_8Minesweeper =
     // ·111·
     // ```
 
-    let annotate (input: string list) =  
+    let annotate (input: string list) = 
+        let listLength =
+            input |> List.length
+        
+        let stringLength = 
+            input |> List.map (fun s -> float s.Length) |> List.average
+
+        let isHorizontal : bool = 
+            if listLength = 1 && stringLength > 1 then true
+            else false
+
+        let isVertical : bool = 
+            if listLength > 1 && stringLength = 1 then true
+            else false
+
+        let isLarge : bool = 
+            if listLength > 1 && stringLength > 1 then true
+            else false 
         
         let minePresent (field: string list) =
             field |> List.map (fun s -> s.Contains "*") |> List.exists (fun s -> s = true) 
@@ -121,7 +138,10 @@ module ExercisesDay2_8Minesweeper =
     let ``Minesweeper - Horizontal line`` () =
         let minefield = [" * * "]
         let expected = ["1*2*1"]
+        printf "%A" expected
+        printf "%A" (annotate minefield)
         annotate minefield |> AssertEquality expected
+
 
     [<Test>]
     let ``Minesweeper - Horizontal line, mines at edges`` () =

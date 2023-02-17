@@ -22,6 +22,16 @@
     <Compile Include="ExercisesDay3_6PascalsTriangle.fs" />
     <Compile Include="ExercisesDay3_7Ledger.fs" />
     <Compile Include="ExercisesDay3_8AtbashCipher.fs" />
+    <Compile Include="Question01.fs" />
+    <Compile Include="Question02.fs" />
+    <Compile Include="Question03.fs" />
+    <Compile Include="Question04.fs" />
+    <Compile Include="Question05.fs" />
+    <Compile Include="Question06.fs" />
+    <Compile Include="Question07.fs" />
+    <Compile Include="Question08.fs" />
+    <Compile Include="Question09.fs" />
+    <Compile Include="Question10.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
