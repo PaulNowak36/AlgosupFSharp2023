@@ -18,8 +18,30 @@ module Question10 =
     //     Input: "2 3 4 * +" Output: "14"
     //     Input: "2 3 4 * 5 + *" Output: "26"
 
+    type EvaluationResult =
+        | EvaluationResult of int
+
     let evalRPN (expression: string) =
-         __
+     
+
+        let evaluateExpression (stack: int list) (expression: Expression): int list =
+            match expression, stack with
+            | OperandExpression(Integer operand), _ -> operand :: stack
+            | OperatorExpression Add, x :: y :: xs -> y + x :: xs
+            | OperatorExpression Sub, x :: y :: xs -> y - x :: xs
+            | OperatorExpression Mul, x :: y :: xs -> y * x :: xs
+            | OperatorExpression Div, x :: y :: xs -> y / x :: xs
+            | _, _ -> failwith "Invalid expression"
+
+        let evaluateEquation (Equation expressions): EvaluationResult =
+            expressions
+            |> List.fold evaluateExpression []
+            |> List.head
+            |> EvaluationResult
+
+        let evaluate (str: string): Result<EvaluationResult, EquationError> =
+            parse str |> Result.map evaluateEquation
+        
 
 
 
