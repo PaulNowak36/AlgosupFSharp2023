@@ -8,7 +8,11 @@ module Question02 =
     // you should provide an implementation that calculates the average (mean)
     // number of letters per word
 
-    let averageNumberLetter (wordList: list<string>) =  __
+    let averageNumberLetter (wordList: list<string>) =  
+        wordList 
+            |> List.map (fun x -> float x.Length) 
+            |> List.average  
+
 
     [<Test>]
     let ``Question 02 - Test Case 01``() =

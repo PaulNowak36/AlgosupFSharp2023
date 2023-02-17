@@ -6,7 +6,11 @@ module Question01 =
     // The function 'compute' receives a list of numbers as a parameter.
     // It should compute a new list, where every number has been doubled.
 
-    let compute (numbers: list<int>) = __
+    let compute (numbers: list<int>) = 
+        // let NewList =
+        //     numbers |> List.Map (fun x -> x*2)
+        __
+        
 
     [<Test>]
     let ``Question 01 - Test Case 01``() =
