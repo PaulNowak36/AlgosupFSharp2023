@@ -18,14 +18,16 @@ module Question03 =
     // leap year
 
     let leapYear (year: int)  =  
-        if year % 4 = 0 && year % 100 = 0 && year % 400 = 0 then 
-            true
-        elif year % 4 = 0 && year % 100 = 0 && year % 400 <> 0 then 
-            false
-        elif year % 4 = 0 && year % 100 <> 0 && year % 400 <> 0 then 
-            true
-        else
-            false
+        let result =
+            if year % 4 = 0 && year % 100 = 0 && year % 400 = 0 then 
+                true
+            elif year % 4 = 0 && year % 100 = 0 && year % 400 <> 0 then 
+                false
+            elif year % 4 = 0 && year % 100 <> 0 && year % 400 <> 0 then 
+                true
+            else
+                false
+        result
 
     [<Test>]
     let ``Question 03 - Test Case 01``() =
